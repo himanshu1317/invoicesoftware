@@ -8,7 +8,7 @@ use App\Http\Controllers\SetupController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
-    return redirect (route('login'));
+    return redirect() ->route('login');
 });
 
 Route::get('/dashboard', function () {
@@ -50,5 +50,8 @@ Route::post('/setupstore', [SetupController::class, 'store'])->name('setupstore'
 
 // profile route
 Route::get('/profile-view', [ProfileController::class, 'profileView'])->name('profile-view');
+
+Route::get('/get-customer-details/{id}', [CustomerController::class, 'getCustomerDetails'])->name('get-data');
+
 
 require __DIR__.'/auth.php';
