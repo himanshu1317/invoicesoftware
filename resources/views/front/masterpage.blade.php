@@ -13,9 +13,9 @@
 
 
 <!-- Loader (Visible on Page Load) -->
-<div id="loaderContainer" class="loader-container">
+<!-- <div id="loaderContainer" class="loader-container">
     <div class="loader"></div>
-</div>
+</div> -->
 
 
 

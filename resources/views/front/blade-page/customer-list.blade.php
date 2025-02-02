@@ -86,7 +86,6 @@
         </button>
         <ul class="dropdown-menu" aria-labelledby="actionDropdown">
             <li><a class="dropdown-item" href="{{route('create-invoice')}}">Make Invoice</a></li>
-            <li><a class="dropdown-item" href="#">Delete</a></li>
             <li><a class="dropdown-item" href="#">Change Status</a></li>
             <li><a class="dropdown-item" href="#">Download</a></li>
             <li><a class="dropdown-item" href="#">Details</a></li>

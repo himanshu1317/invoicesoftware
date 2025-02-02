@@ -23,7 +23,7 @@
     <script src="{{asset('lib/js-cookie/js.cookie.js')}}"></script>
     <script src="{{asset('js/dashforge.settings.js')}}"></script>
      <!-- jQuery -->
-     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
     <!-- DataTables JS -->
     <script src="https://cdn.datatables.net/1.13.5/js/jquery.dataTables.min.js"></script>
     <script src="https://cdn.datatables.net/responsive/2.4.1/js/dataTables.responsive.min.js"></script>

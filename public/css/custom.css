@@ -51,3 +51,54 @@
     text-align: center;
     padding: 50px;
 }
+
+
+
+/* table respocive */
+
+@media (max-width: 768px) {
+    /* Hide table headers on small screens */
+    #dynamicTable thead {
+        display: none;
+    }
+
+    /* Make table rows block elements to stack vertically */
+    #dynamicTable tbody tr {
+        display: block;
+        margin-bottom: 15px;
+        padding: 10px;
+        border: 1px solid #ddd;
+    }
+
+    #dynamicTable tbody td {
+        display: block;
+        width: 100%;
+        text-align: right;
+        padding: 10px;
+        border: none;
+        border-bottom: 1px solid #ddd;
+        position: relative;
+    }
+
+    /* Add labels for each cell on mobile */
+    #dynamicTable tbody td:before {
+        content: attr(data-label);
+        font-weight: bold;
+        position: absolute;
+        left: 10px;
+        top: 10px;
+    }
+
+    /* Adjust button width for mobile */
+    .btn-primary {
+        width: 100% !important;
+    }
+}
+
+
+
+.form-control:focus, .form-select:focus {
+    outline: none !important;
+    box-shadow: none !important;
+    border-color: #ccc; /* Optional: Keeps the border consistent */
+}

@@ -23,17 +23,33 @@ class CustomerController extends Controller
     {
         $request->validate([
             'name' => 'required',
-            'email' => 'required|email|unique:customers',
+            'email' => 'required|email',
             'phone' => 'nullable',
             'address' => 'nullable',
         ]);
-
+    
+        // Insert data into the customers table
         Customer::create($request->all());
-
-     
-        return redirect()->route('customer.page')->with('success', 'Customer added successfully!');
+    
+        // Return the same view with a success message
+        return back()->with('success', 'Customer added successfully!');
     }
-   
+    
+    public function getCustomerDetails($id)
+    {
+        $customer = Customer::find($id); // Fetch customer by ID
+    
+        if ($customer) {
+            return response()->json([
+                'email' => $customer->email,
+                'phone' => $customer->phone,
+                'address' => $customer->address,
+            ]);
+        }
+    
+        return response()->json(['error' => 'Customer not found'], 404);
+    }
+    
     
 
 }
