@@ -44,12 +44,12 @@
         </div>
     </div>
 
-    <form action="{{ route('customer.invoices') }}" method="POST">
+    <form action="{{ route('customer.invoices')}}" method="POST">
         @csrf
 
         <div class="row p-4 bg-light bg-gradient">
             <div class="col-sm-2 my-auto text-danger">
-                Custome Name <span>*</span>
+                Customer Name <span>*</span>
             </div>
             <div class="col-sm-5 my-auto">
                 <div class="container">
@@ -282,16 +282,13 @@
 
         </div>
 
-        <!-- 
-<div class="btn btn-primary">Add New Row</div>
-
-
-<div class="btn btn-primary">Add Item in Bulk   </div> -->
+        <!-- <div class="btn btn-primary">Add New Row</div>
+        <div class="btn btn-primary">Add Item in Bulk   </div> -->
 
 
 </div>
 
-<div class="container">
+         <div class="container">
     <div class="row p-4">
         <div class="d-sm-flex align-items-center justify-content-between mg-b-20 mg-lg-b-25 mg-xl-b-30">
 
@@ -309,9 +306,9 @@
             </div>
         </div>
     </div>
-</div>
+        </div>
 
-
+</form>
 
 
 </div>
