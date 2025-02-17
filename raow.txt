@@ -1,4 +1,71 @@
-@extends('front.masterpage')
+{{ route('customer.invoices')}}
+
+
+
+  <fieldset class="p-3 rounded bg-light bg-gradient">
+        <legend class="fw-bold">Product Details</legend>
+        <div class="row p-4">
+            <table class="table table-bordered" id="dynamicTable">
+                <thead class="thead-light">
+                    <tr>
+                        <th>Item Details</th>
+                        <th>Quantity</th>
+                        <th>Rate</th>
+                        <th>Amount</th>
+                        <th>Discount</th>
+                        <th>Tax</th>
+                        <th>#</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><input name="product_name[]" type="text" class="form-control" placeholder="Enter name"></td>
+                        <td><input name="quantity[]" type="number" class="form-control product-qty" placeholder="Enter quantity"></td>
+                        <td><input name="unit_price[]" type="number" class="form-control product-rate" placeholder="Enter rate"></td>
+                        <td><input name="total[]" type="number" class="form-control product-amount" readonly></td>
+                        <td>
+                            <div class="input-group">
+                                <input type="number" name="discount[]" class="form-control discount w-75" placeholder="Discount">
+                                <select class="form-select discount-type w-25">
+                                    <option value="percentage">%</option>
+                                    <option value="rupees">₹</option>
+                                </select>
+                            </div>
+                        </td>
+                        <td>
+                            <div class="input-group ">
+                                <input type="number" name="tax[]" class="form-control tax-rate w-75" placeholder="Tax %">
+                                <select class="form-select tax-type w-25">
+                                    <option value="gst">GST</option>
+                                    <option value="vat">VAT</option>
+                                </select>
+                            </div>
+                        </td>
+                        <td><button type="button" class="btn btn-danger btn-sm delete-row">Remove</button></td>
+                    </tr>
+                </tbody>
+            </table>
+            <button type="button" class="btn btn-primary" id="addRowButton">Add New Item</button>
+            <label class="fw-bold">Subtotal: ₹<span id="subtotal">0.00</span></label>
+        </div>
+        <div class="row my-3">
+            <div class="col-lg-3 ms-auto text-end">
+                <div class="border-top pt-3 mt-3 text-danger">
+                    <strong>Total ( ₹ ) :</strong>
+                    <strong id="totalAmount">0.00</strong>
+                    <input name="total_amount" type="hidden" id="totalAmountInput" value="">
+                </div>
+            </div>
+        </div>
+    </fieldset>
+
+
+
+
+
+
+   ///////////////////////////////////////////////////////////// Create Invoice Old Structure 
+   @extends('front.masterpage')
 @section('content')
 
 <style>
@@ -192,63 +259,71 @@
                 </div>
             </div>
         </fieldset>
-        <fieldset class="p-3 rounded bg-light bg-gradient">
-    <legend class="fw-bold">Product Details</legend>
-    <div class="row p-4">
-        <table class="table table-bordered" id="dynamicTable">
-            <thead class="thead-light">
-                <tr>
-                    <th>Item Details</th>
-                    <th>Quantity</th>
-                    <th>Rate</th>
-                    <th>Amount</th>
-                    <th>Discount</th>
-                    <th>Tax</th>
-                    <th>Action</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                    <td><input name="product_name[]" type="text" class="form-control" placeholder="Enter name"></td>
-                    <td><input name="quantity[]" type="number" class="form-control product-qty" placeholder="Enter quantity" min="0"></td>
-                    <td><input name="unit_price[]" type="number" class="form-control product-rate" placeholder="Enter rate" min="0"></td>
-                    <td><input name="total[]" type="number" class="form-control product-amount" readonly></td>
-                    <td>
-                        <div class="input-group">
-                            <input type="number" name="discount[]" class="form-control row-discount w-75" placeholder="Discount" min="0">
-                            <select class="form-select row-discount-type w-25">
-                                <option value="percentage">%</option>
-                                <option value="rupees">₹</option>
-                            </select>
-                        </div>
-                    </td>
-                    <td>
-                        <div class="input-group">
-                            <input type="number" name="tax[]" class="form-control row-tax w-75" placeholder="Tax" min="0">
-                            <select class="form-select row-tax-type w-25">
-                                <option value="gst">GST</option>
-                                <option value="vat">VAT</option>
-                            </select>
-                        </div>
-                    </td>
-                    <td><button type="button" class="btn btn-danger btn-sm delete-row">Remove</button></td>
-                </tr>
-            </tbody>
-        </table>
-        <button type="button" class="btn btn-primary w-25" id="addRowButton">Add New Item</button>
-        <label class="fw-bold" style="display: none;">Subtotal: ₹<span id="subtotal">0.00</span></label>
-    </div>
-    <div class="row my-3">
-        <div class="col-lg-3 ms-auto text-end">
-            <div class="border-top pt-3 mt-3 text-danger">
-                <strong>Total ( ₹ ) :</strong>
-                <strong id="totalAmount">0.00</strong>
-                <input name="total_amount" type="hidden" id="totalAmountInput" value="">
-            </div>
-        </div>
-    </div>
-</fieldset>
+        <fieldset class=" p-3 rounded bg-light bg-gradient">
+            <legend class="fw-bold">Product Details</legend>
+            <div class="row p-4">
+                <table class="table table-bordered " id="dynamicTable">
+                    <thead class="thead-light">
+                        <tr>
+                            <th scope="col">Item Details</th>
+                            <th scope="col">Quantity</th>
+                            <th scope="col">Rate</th>
+                            <th scope="col">Amount</th>
+                            <th scope="col">#</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><input name="product_name[]" type="text" class="form-control" placeholder="Enter name"></td>
+                            <td><input name="quantity[]" type="number" class="form-control product-qty" placeholder="Enter quantity"></td>
+                            <td><input name="unit_price[]" type="number" class="form-control product-rate" placeholder="Enter rate"></td>
+                            <td><input name="total[]" type="number" class="form-control product-amount" readonly placeholder="Amount"></td>
+                            <td><button type="button" class="btn btn-danger btn-sm delete-row">Remove</button></td>
+                        </tr>
+                    </tbody>
+                </table>
 
+                <!-- Inline Button & Subtotal -->
+                <div class="d-flex justify-content-between align-items-center w-100">
+                    <button type="button" class="btn btn-primary" id="addRowButton">Add New Item</button>
+                    <label class="fw-bold">Subtotal: ₹<span id="subtotal">0.00</span></label>
+                </div>
+            </div>
+            <!-- discount and tax  -->
+            <div class="row my-3">
+                <div class="col-lg-3">
+                    <label for="discount" class="form-label">Discount</label>
+                    <div class="input-group">
+                        <input type="number" name="discount" id="discount" class="form-control w-75" placeholder="Enter discount">
+                        <select class="form-select w-25" id="unitSelect">
+                            <option value="percentage">%</option>
+                            <option value="rupees">₹</option>
+                        </select>
+                    </div>
+
+                </div>
+
+                <div class="col-lg-3">
+                    <label for="tax" class="form-label">Tax %</label>
+                    <div class="input-group">
+                        <input type="number" oninput="applyTax()" name="taxRate" id="taxRate" class="form-control w-75" placeholder="Enter discount">
+                        <select class="form-select w-25" id="taxUnit">
+                            <option value="gst">GST</option>
+                            <option value="vat">VAT</option>
+                        </select>
+                    </div>
+                </div>
+
+
+                <div class="col-lg-3 ms-auto text-end">
+                    <div class="border-top pt-3 mt-3 text-danger">
+                        <strong>Total ( ₹ ) :</strong>
+                        <strong id="totalAmount">0.00</strong>
+                        <input name="total_amount" type="hidden" id="totalAmountInput" value="">
+                    </div>
+                </div>
+            </div>
+        </fieldset>
         <!-- end discount and tax  -->
         <!-- Payment Details Section -->
         <fieldset class="border p-3 rounded bg-light bg-gradient">
@@ -309,9 +384,9 @@
         <div class="container-fluid">
             <div class="row mt-3 py-4">
                 <div class="d-flex align-items-center justify-content-end gap-2">
-                    <!-- <a href="#" class="btn btn-outline-secondary btn-lg">
+                    <a href="#" class="btn btn-outline-secondary btn-lg">
                         Save as Draft
-                    </a> -->
+                    </a>
                     <button type="submit" class="btn btn-primary btn-lg">
                         Generate Invoice
                     </button>
@@ -528,3 +603,6 @@
 
 
 @endsection
+
+
+

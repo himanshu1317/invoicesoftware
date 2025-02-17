@@ -26,32 +26,40 @@ Route::middleware('auth')->group(function () {
 Route::get('/customer', [CustomerController::class, 'index'])->name('customer.page');
 Route::get('/cust_form', [CustomerController::class, 'create'])->name('customer.form');
 Route::post('/custstor', [CustomerController::class, 'store'])->name('customers.store');
-
 Route::get('/custinv', [CustomerController::class, 'custinv'])->name('custinv');
-
 Route::get('/get-customer/27', [CustomerController::class, 'getCustomer']);
+
+
+
+
+
+
 
 
 // invoice page
 Route::get('/invoice', [InvoiceController::class, 'index'])->name('invoice.page');
-Route::get('/inv_form', [InvoiceController::class, 'create'])->name('invoice-form');
+Route::post('/inv_form', [InvoiceController::class, 'showForm'])->name('invstore');
 Route::post('/invstor', [InvoiceController::class, 'storeInvoice'])->name('customer.invoices');
 Route::get('/invoice', [InvoiceController::class, 'index'])->name('invoice.page');
 Route::get('/createinv', [InvoiceController::class, 'createform'])->name('create-invoice');
-Route::post('/invstor', [InvoiceController::class, 'invstore'])->name('invstore');
-
-Route::get('invoice-page/{customer_id?}',[InvoiceController::class,'invpage'])->name('invoices.index');
-
+// Route::post('/invstor', [InvoiceController::class, 'invstore'])->name('invstore');
+Route::get('/invoices', [InvoiceController::class, 'showForm'])->name('invoices.index');
 
 
+
+
+// compnise routes
 Route::get('/set-up', [SetupController::class, 'index']);
 Route::post('/setupstore', [SetupController::class, 'store'])->name('setupstore');
 
 
+
+
+
+
+
+
 // profile route
 Route::get('/profile-view', [ProfileController::class, 'profileView'])->name('profile-view');
-
 Route::get('/get-customer-details/{id}', [CustomerController::class, 'getCustomerDetails'])->name('get-data');
-
-
 require __DIR__.'/auth.php';

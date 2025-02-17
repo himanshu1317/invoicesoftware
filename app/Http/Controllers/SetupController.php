@@ -27,10 +27,16 @@ class SetupController extends Controller
             'email' => 'nullable|email|max:255',
             'phone' => 'nullable|string|max:20',
             'address' => 'nullable|string',
-            'tax_number' => 'nullable|string|max:50',
-        ]);
+            'gst_number' => 'nullable|string|max:50',
+            'website' => 'nullable|string|max:100',
+            'alt_number' => 'nullable|string|max:100',
+            'registration_no' => 'nullable|string|max:100',
+            'financial_year' => 'nullable|string|max:100',
+            // 'website' => 'nullable|string|max:100'
+                ]);
 
         Company::create($validated);
+        return redirect(route('register'));
 
     }
 

@@ -44,6 +44,7 @@ class CustomerController extends Controller
                 'email' => $customer->email,
                 'phone' => $customer->phone,
                 'address' => $customer->address,
+                'school_company_name'=>$customer->company_school_name,
             ]);
         }
     

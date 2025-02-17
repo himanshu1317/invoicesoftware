@@ -1,5 +1,10 @@
 @include('front.common.links')
-<div class="container w-75">
+
+
+<div class="container ">
+    <div class="media align-items-stretch justify-content-center  mt-5 pos-relative">
+
+    <div class="container w-75 p-5 shadow">
     <h1 class="text-center">About Company</h1>
     
     <form action="{{route('setupstore')}}" method="POST" enctype="multipart/form-data">
@@ -43,10 +48,10 @@
         <div class="row">
             <!-- First Column -->
             <div class="col-sm-4">
-                <div class="mb-3">
-                    <label for="tax_number" class="form-label text-danger">Tax Number</label>
-                    <input type="text" name="tax_number" id="tax_number" class="form-control" value="">
-                    @error('tax_number')
+            <div class="mb-3">
+                    <label for="financial_session" class="form-label text-danger">Financial Year</label>
+                    <input type="text" name="financial_year" id="financial_session" class="form-control" value="">
+                    @error('financial_session')
                         <div class="text-danger">{{ $message }}</div>
                     @enderror
                 </div>
@@ -67,7 +72,7 @@
             <div class="col-sm-4">
                 <div class="mb-3">
                     <label for="alternate_phone" class="form-label text-danger">Alternate Phone No</label>
-                    <input type="text" name="alternate_phone" id="alternate_phone" class="form-control" value="">
+                    <input type="text" name="alt_number" id="alternate_phone" class="form-control" value="">
                     @error('alternate_phone')
                         <div class="text-danger">{{ $message }}</div>
                     @enderror
@@ -80,7 +85,7 @@
             <div class="col-sm-4">
                 <div class="mb-3">
                     <label for="registration_number" class="form-label text-danger">Registration No</label>
-                    <input type="text" name="registration_number" id="registration_number" class="form-control" value="">
+                    <input type="text" name="registration_no" id="registration_number" class="form-control" value="">
                     @error('registration_number')
                         <div class="text-danger">{{ $message }}</div>
                     @enderror
@@ -113,15 +118,15 @@
         <!-- Financial Session Field -->
         <div class="row">
             <!-- Single Column for Financial Session -->
-            <div class="col-sm-12">
+            <!-- <div class="col-sm-12">
                 <div class="mb-3">
                     <label for="financial_session" class="form-label text-danger">Financial Year</label>
-                    <input type="text" name="financial_session" id="financial_session" class="form-control" value="">
+                    <input type="text" name="financial_year" id="financial_session" class="form-control" value="">
                     @error('financial_session')
                         <div class="text-danger">{{ $message }}</div>
                     @enderror
                 </div>
-            </div>
+            </div> -->
         </div>
 
         <div class="mb-3">
@@ -132,7 +137,10 @@
             @enderror
         </div>
 
-        <button type="submit" class="btn btn-warning">Submit</button>
-        <a href="#" class="btn btn-secondary">Back</a>
+        <button type="submit" class="btn btn-warning">Next</button>
+        <button type="reset" class="btn btn-secondary">Reset</button>
     </form>
 </div>
+    </div>
+    </div>
+    

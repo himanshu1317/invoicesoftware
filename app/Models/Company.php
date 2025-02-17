@@ -1,4 +1,5 @@
 <?php
+
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
@@ -7,5 +8,16 @@ use Illuminate\Database\Eloquent\Model;
 class Company extends Model
 {
     use HasFactory;
-    protected $fillable = ['name', 'email', 'phone', 'address', 'tax_number'];
+
+    protected $fillable = [
+        'name',
+        'email',
+        'phone',
+        'address',
+        'gst_number',
+        'website',
+        'alt_number',
+        'registration_no',
+        'financial_year',
+    ];
 }

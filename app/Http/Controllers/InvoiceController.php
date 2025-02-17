@@ -34,17 +34,18 @@ class InvoiceController extends Controller
         return view('front.form.new-invoice-form',compact('formdata','inv_data')); // Adjust view path as needed
     }
 
+    
   
 
     
         // Display the invoice form with customers
-        public function showForm()
+        public function invpage()
         {
             // Fetch all customers for dropdown
             $formdata = Customer::all();
-            $inv_data = Invoice::generateInvoiceNumber(); // Assume you have this logic in your Invoice model
+            // $inv_data = Invoice::generateInvoiceNumber(); // Assume you have this logic in your Invoice model
     
-            return view('invoice.form', compact('formdata', 'inv_data'));
+            return view('front.blade-page.invoice-page', compact('formdata'));
         }
     
         // Handle the invoice form submissionnamespace App\Http\Controllers;
