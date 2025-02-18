@@ -68,12 +68,10 @@
         </div>
     </div>
 </div>
-<div class="container-fluid border-dark ">
 
 
-
-    <form action="{{ route('invstore') }}" method="POST">
-       @csrf
+<form id="customerForm" action="{{ route('invstore', ['customer_id' => old('customer_id')]) }}" method="POST">
+    @csrf
         <fieldset class="p-4 bg-light bg-gradient border rounded">
             <legend class="text-danger">Customer Details</legend>
             <div class="row mt-2">
@@ -90,7 +88,7 @@
                                     id="invoice_number"
                                     class="form-control"
                                     type="text"
-                                    value="">
+                                    value="{{ $inv_data }}">
                             </div>
 
                             <!-- Invoice Date -->
@@ -201,9 +199,10 @@
                     <th>Item Details</th>
                     <th>Quantity</th>
                     <th>Rate</th>
+                    <th>Discount/Item</th>
                     <th>Amount</th>
-                    <th>Discount</th>
-                    <th>Tax</th>
+                   
+                    <!-- <th>Tax</th> -->
                     <th>Action</th>
                 </tr>
             </thead>
@@ -212,7 +211,7 @@
                     <td><input name="product_name[]" type="text" class="form-control" placeholder="Enter name"></td>
                     <td><input name="quantity[]" type="number" class="form-control product-qty" placeholder="Enter quantity" min="0"></td>
                     <td><input name="unit_price[]" type="number" class="form-control product-rate" placeholder="Enter rate" min="0"></td>
-                    <td><input name="total[]" type="number" class="form-control product-amount" readonly></td>
+                   
                     <td>
                         <div class="input-group">
                             <input type="number" name="discount[]" class="form-control row-discount w-75" placeholder="Discount" min="0">
@@ -222,7 +221,8 @@
                             </select>
                         </div>
                     </td>
-                    <td>
+                    <td><input name="total[]" type="number" class="form-control product-amount" readonly></td>
+                    <!-- <td>
                         <div class="input-group">
                             <input type="number" name="tax[]" class="form-control row-tax w-75" placeholder="Tax" min="0">
                             <select class="form-select row-tax-type w-25">
@@ -230,7 +230,7 @@
                                 <option value="vat">VAT</option>
                             </select>
                         </div>
-                    </td>
+                    </td> -->
                     <td><button type="button" class="btn btn-danger btn-sm delete-row">Remove</button></td>
                 </tr>
             </tbody>
@@ -252,41 +252,113 @@
         <!-- end discount and tax  -->
         <!-- Payment Details Section -->
         <fieldset class="border p-3 rounded bg-light bg-gradient">
-            <legend class="fw-bold">Payment Details</legend>
+    <legend class="fw-bold">Payment Details</legend>
 
-            <div class="row my-3">
-                <div class="col-lg-3">
-                    <label for="paymentMethod" class="form-label">Payment Method</label>
-                    <select class="form-select" id="paymentMethod">
-                        <option value="">-- Select Method --</option>
-                        <option value="bank_transfer">Bank Transfer</option>
-                        <option value="credit_card">Credit Card</option>
-                        <option value="paypal">PayPal</option>
-                        <option value="upi">UPI</option>
-                    </select>
-                </div>
+    <div class="row my-3 align-items-center">
+        <div class="col-lg-3">
+            <label for="paymentStatus" class="form-label">Payment Status</label>
+            <select class="form-select" id="paymentStatus">
+                <option value="">-- Select Status --</option>
+                <option value="paid">Paid</option>
+                <option value="unpaid">Unpaid</option>
+                <option value="partial">Partially Paid</option>
+            </select>
+        </div>
 
-                <div class="col-lg-3">
-                    <label for="paymentStatus" class="form-label">Payment Status</label>
-                    <select class="form-select" id="paymentStatus">
-                        <option value="">-- Select Status --</option>
-                        <option value="paid">Paid</option>
-                        <option value="unpaid">Unpaid</option>
-                        <option value="partial">Partially Paid</option>
-                    </select>
-                </div>
+        <div class="col-lg-3 d-none" id="paymentMethodContainer">
+            <label for="paymentMethod" class="form-label">Payment Method</label>
+            <select class="form-select" id="paymentMethod">
+                <option value="">-- Select Method --</option>
+                <option value="cash">Cash</option>
+                <option value="bank_transfer">Bank Transfer</option>
+                <option value="credit_card">Credit Card</option>
+                <option value="paypal">PayPal</option>
+                <option value="upi">UPI</option>
+            </select>
+        </div>
 
-                <div class="col-lg-3">
-                    <label for="paymentReference" class="form-label">Payment Reference Number</label>
-                    <input type="text" name="paymentReference" id="paymentReference" class="form-control" placeholder="Enter reference (if paid)">
-                </div>
+        <div class="col-lg-3 d-none" id="paymentReferenceContainer">
+            <label for="paymentReference" class="form-label">Payment Reference</label>
+            <input type="text" id="paymentReference" class="form-control" placeholder="Enter reference (if paid)">
+        </div>
+    </div>
 
-                <div class="col-lg-3">
-                    <label for="latePayment" class="form-label">Late Payment Penalties</label>
-                    <input type="number" name="latePayment" id="latePayment" class="form-control" placeholder="Enter penalty amount (if applicable)">
-                </div>
-            </div>
-        </fieldset>
+    <!-- Fields that will always show (discount, paid amount, total amount, etc.) -->
+    <div class="row my-3 align-items-center">
+        <div class="col-lg-3">
+            <label for="totalAmount" class="form-label">Total Amount</label>
+            <input type="number" id="totalAmount" class="form-control" placeholder="Enter total amount">
+        </div>
+
+        <div class="col-lg-3">
+            <label for="discount" class="form-label">Discount</label>
+            <input type="number" id="discount" class="form-control" placeholder="Enter discount amount">
+        </div>
+
+        <div class="col-lg-3">
+            <label for="paidBalance" class="form-label">Paid Amount</label>
+            <input type="number" id="paidBalance" class="form-control" placeholder="Enter paid amount">
+        </div>
+
+        <div class="col-lg-3">
+            <label for="dueBalance" class="form-label">Due Balance</label>
+            <input type="text" id="dueBalance" class="form-control" readonly>
+        </div>
+    </div>
+
+    <!-- Fields for partial payments -->
+    
+</fieldset>
+
+<script>
+    document.getElementById('paymentStatus').addEventListener('change', function () {
+        let paymentMethodContainer = document.getElementById('paymentMethodContainer');
+        let paymentReferenceContainer = document.getElementById('paymentReferenceContainer');
+        let partialPaymentFields = document.getElementById('partialPaymentFields');
+
+        // Show payment method and reference containers if paid or partial
+        if (this.value === 'paid' || this.value === 'partial') {
+            paymentMethodContainer.classList.remove('d-none');
+            paymentReferenceContainer.classList.remove('d-none');
+        } else {
+            paymentMethodContainer.classList.add('d-none');
+            paymentReferenceContainer.classList.add('d-none');
+        }
+
+        // Show partial payment fields only if status is partial
+        if (this.value === 'partial') {
+            partialPaymentFields.classList.remove('d-none');
+        } else {
+            partialPaymentFields.classList.add('d-none');
+        }
+    });
+
+    document.getElementById('paymentMethod').addEventListener('change', function () {
+        let paymentReferenceContainer = document.getElementById('paymentReferenceContainer');
+
+        if (this.value === 'cash') {
+            paymentReferenceContainer.classList.add('d-none');
+        } else {
+            paymentReferenceContainer.classList.remove('d-none');
+        }
+    });
+
+    function calculateDueBalance() {
+        let totalAmount = parseFloat(document.getElementById('totalAmount').value) || 0;
+        let discount = parseFloat(document.getElementById('discount').value) || 0;
+        let paidAmount = parseFloat(document.getElementById('paidBalance').value) || 0;
+        
+        let discountedTotal = totalAmount - discount; // Apply the discount to the total amount
+        let dueAmount = discountedTotal - paidAmount;
+
+        document.getElementById('dueBalance').value = dueAmount.toFixed(2);
+    }
+
+    // Event listeners for discount and paid balance fields to recalculate due balance
+    document.getElementById('discount').addEventListener('input', calculateDueBalance);
+    document.getElementById('paidBalance').addEventListener('input', calculateDueBalance);
+</script>
+
 
         <!-- Customer Notes & Terms Section -->
         <fieldset class="border p-3 rounded mt-4 bg-light bg-gradient">
@@ -420,13 +492,15 @@
                                 </div>
                                 <div class="row mb-3">
                                     <div class="col-md-8">
-                                        <label class="form-label">
-                                            Company Name <input type="radio" name="entity" value="company">
-                                            School Name <input type="radio" name="entity" value="school">
-                                        </label>
-                                        <input type="text" id="phone" name="phone" placeholder="Enter Company or School name" class="form-control">
-                                    </div>
-
+                                    <label for="organization" class="form-label">Select Organization Type</label>
+<select name="organization" class="form-select" id="organization">
+    <option value="">-- Select Organization --</option>
+    <option value="school">School</option>
+    <option value="company">Company</option>
+    <option value="business">Business</option>
+    <option value="other">Other</option>
+</select>
+</div>
                                     <div class="col-md-4">
                                         <label for="name" class="form-label">Email :</label>
                                         <input type="text" id="email" name="email" class="form-control" placeholder="Enter Email Address" required>
@@ -523,7 +597,19 @@
         }
     });
 </script>
+<!-- customer id send url code -->
+<script>
+    document.getElementById('customerSelect').addEventListener('change', function () {
+        let customerId = this.value;
+        let form = document.getElementById('customerForm');
 
+        if (customerId) {
+            form.action = "{{ route('invstore') }}/" + customerId;
+        }
+    });
+</script>
+
+<!-- end customer id send url code -->
 
 
 

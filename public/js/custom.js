@@ -126,3 +126,12 @@ function hideLoader() {
         });
     });
     
+
+
+
+
+
+    // paymanet deitails
+
+
+    // end paymanetr deilatids

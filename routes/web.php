@@ -38,10 +38,13 @@ Route::get('/get-customer/27', [CustomerController::class, 'getCustomer']);
 
 // invoice page
 Route::get('/invoice', [InvoiceController::class, 'index'])->name('invoice.page');
-Route::post('/inv_form', [InvoiceController::class, 'showForm'])->name('invstore');
+
+// Store Form Data Route (POST)
+Route::post('/inv_form/store/{customer_id?}', [InvoiceController::class, 'showForm'])->name('invstore');
+
 Route::post('/invstor', [InvoiceController::class, 'storeInvoice'])->name('customer.invoices');
 Route::get('/invoice', [InvoiceController::class, 'index'])->name('invoice.page');
-Route::get('/createinv', [InvoiceController::class, 'createform'])->name('create-invoice');
+Route::get('/create-invoice', [InvoiceController::class, 'createform'])->name('create-invoice');
 // Route::post('/invstor', [InvoiceController::class, 'invstore'])->name('invstore');
 Route::get('/invoices', [InvoiceController::class, 'showForm'])->name('invoices.index');
 

@@ -9,7 +9,7 @@
     <script src="{{asset('lib/feather-icons/feather.min.js')}}"></script>
     <script src="{{asset('lib/ionicons/ionicons/ionicons.esm.js')}}" type="module"></script>
     <script src="{{asset('lib/perfect-scrollbar/perfect-scrollbar.min.js')}}"></script>
-    <script src="{{asset('lib/chart.js/Chart.bundle.min.js')}}"></script>
+    
     <script src="{{asset('lib/jquery.flot/jquery.flot.js')}}"></script>
     <script src="{{asset('lib/jquery.flot/jquery.flot.stack.js')}}"></script>
     <script src="{{asset('lib/jquery.flot/jquery.flot.resize.js')}}"></script>

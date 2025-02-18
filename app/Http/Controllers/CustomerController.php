@@ -23,9 +23,12 @@ class CustomerController extends Controller
     {
         $request->validate([
             'name' => 'required',
+            'lastname'=>'required',
             'email' => 'required|email',
             'phone' => 'nullable',
+            'organization'=>'nullable',
             'address' => 'nullable',
+
         ]);
     
         // Insert data into the customers table

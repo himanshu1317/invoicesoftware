@@ -12,5 +12,5 @@ class Customer extends Model
     // protected $table = 'customers';
 
     // Define which attributes are mass assignable
-    protected $fillable = ['name', 'email', 'phone', 'address'];
+    protected $fillable = ['name','lastname', 'email', 'phone', 'address','organization'];
 }

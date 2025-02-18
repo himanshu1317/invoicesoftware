@@ -39,15 +39,16 @@ class InvoiceController extends Controller
 
     
         // Display the invoice form with customers
-        public function invpage()
+        public function showForm($customer_id = null)
         {
-            // Fetch all customers for dropdown
-            $formdata = Customer::all();
-            // $inv_data = Invoice::generateInvoiceNumber(); // Assume you have this logic in your Invoice model
-    
-            return view('front.blade-page.invoice-page', compact('formdata'));
+           
+        
+            // Fetch selected customer details
+            $customer = $customer_id ? Customer::find($customer_id) : null;
+        
+            return view('front.blade-page.invoice-page', compact( 'customer'));
         }
-    
+        
         // Handle the invoice form submissionnamespace App\Http\Controllers;
 
 
@@ -55,15 +56,22 @@ class InvoiceController extends Controller
 
 public function createform()
 {
-    $formdata = Customer::all();
-    
-        return view('front.form.create-invoice', compact('formdata')); // Create a Blade file for this form
+    $lastInvoice = Invoice::latest('id')->first();
+
+    // Generate a new invoice ID
+    if ($lastInvoice) {
+        $inv_data = 'INV' . str_pad($lastInvoice->id + 1, 6, '0', STR_PAD_LEFT); // Example: INV000002
+    } else {
+        $inv_data = 'INV000001'; // First invoice ID
+    }
+
+        // Fetch data or pass data to the view
+        $formdata = Customer::all();
+        return view('front.form.create-invoice',compact('formdata','inv_data')); // Adjust view path as needed
+
+
+
 }
-
-
-
-
-
 
 }
 
