@@ -57,12 +57,16 @@ class InvoiceController extends Controller
 
     private function handleInvoiceSubmission(Request $request)
     {
+
+        // dd($request->all());
         // ✅ Step 1: Validate Request Data
         $validator = Validator::make($request->all(), [
             'customer_id' => 'required|numeric|exists:customers,id',
             'invoice_number' => 'required|string',
             'invoice_date' => 'required|date',
             'due_date' => 'required|date',
+            'organization'=> 'required|string',
+            'email'=> 'required|email',
             'product_name' => 'required|array|min:1',
             'product_name.*' => 'required|string|max:255',
             'quantity' => 'required|array|min:1',
@@ -77,6 +81,9 @@ class InvoiceController extends Controller
             'paid' => 'required|numeric|min:0',
             'balance' => 'required|numeric|min:0',
         ]);
+        if ($validator->fails()) {
+            return redirect()->back()->withErrors($validator)->withInput();
+        }
     
         try {
             DB::beginTransaction(); // Start database transaction
@@ -121,6 +128,7 @@ class InvoiceController extends Controller
             }
     
             if (!empty($invoiceItems)) {
+                // dd($invoiceItems);
                 InvoiceItem::insert($invoiceItems); // Bulk Insert for performance
             }
     
