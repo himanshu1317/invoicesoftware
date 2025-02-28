@@ -1,4 +1,4 @@
-<header class="navbar navbar-header navbar-header-fixed ">
+<header class="navbar navbar-header navbar-header-fixed " style="top:0;">
       <a href="" id="mainMenuOpen" class="burger-menu"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-menu"><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg></a>
       <div class="navbar-brand">
       <a href="/dashboard" class="df-logo">
@@ -18,18 +18,19 @@
           <li class="nav-item"><a href="/dashboard" class="nav-link"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-box"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"></path><polyline points="3.27 6.96 12 12.01 20.73 6.96"></polyline><line x1="12" y1="22.08" x2="12" y2="12"></line></svg> Home</a></li>
           
           <li class="nav-item"><a href="{{route('customer.page')}}" class="nav-link"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-box"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"></path><polyline points="3.27 6.96 12 12.01 20.73 6.96"></polyline><line x1="12" y1="22.08" x2="12" y2="12"></line></svg>Customers</a></li>
-          <li class="nav-item"><a href="{{route('customer.page')}}" class="nav-link"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-box"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"></path><polyline points="3.27 6.96 12 12.01 20.73 6.96"></polyline><line x1="12" y1="22.08" x2="12" y2="12"></line></svg>Invoices</a></li>
+          <li class="nav-item"><a href="{{route('invoice.page')}}" class="nav-link"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-box"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"></path><polyline points="3.27 6.96 12 12.01 20.73 6.96"></polyline><line x1="12" y1="22.08" x2="12" y2="12"></line></svg>Invoices</a></li>
                 
           <li class="nav-item"><a href="#" class="nav-link"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-archive"><polyline points="21 8 21 21 3 21 3 8"></polyline><rect x="1" y="3" width="22" height="5"></rect><line x1="10" y1="12" x2="14" y2="12"></line></svg> Payment History</a></li>
        
           <li class="nav-item with-sub">
-            <a href="" class="nav-link"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-package"><line x1="16.5" y1="9.4" x2="7.5" y2="4.21"></line><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"></path><polyline points="3.27 6.96 12 12.01 20.73 6.96"></polyline><line x1="12" y1="22.08" x2="12" y2="12"></line></svg> Items</a>
+            <a href="" class="nav-link"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-package"><line x1="16.5" y1="9.4" x2="7.5" y2="4.21"></line><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"></path><polyline points="3.27 6.96 12 12.01 20.73 6.96"></polyline><line x1="12" y1="22.08" x2="12" y2="12"></line></svg> Other</a>
             <ul class="navbar-menu-sub">
-              <li class="nav-sub-item"><a href="app-calendar.html" class="nav-sub-link"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-calendar"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>Calendar</a></li>
-              <li class="nav-sub-item"><a href="app-chat.html" class="nav-sub-link"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-message-square"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path></svg>Chat</a></li>
-              <li class="nav-sub-item"><a href="app-contacts.html" class="nav-sub-link"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-users"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle><path d="M23 21v-2a4 4 0 0 0-3-3.87"></path><path d="M16 3.13a4 4 0 0 1 0 7.75"></path></svg>Contacts</a></li>
-              <li class="nav-sub-item"><a href="app-file-manager.html" class="nav-sub-link"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-file-text"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></svg>File Manager</a></li>
-              <li class="nav-sub-item"><a href="app-mail.html" class="nav-sub-link"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-mail"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg>Mail</a></li>
+              <li class="nav-sub-item"><a href="#" class="nav-sub-link"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-calendar"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>Task Manager</a></li>
+              <li class="nav-sub-item"><a href="{{ route('lead-dashboard') }}" class="nav-sub-link"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-message-square"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path></svg>Lead Manager</a></li>
+              <li class="nav-sub-item"><a href="{{ route('contact-dashboard') }}" class="nav-sub-link"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-users"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle><path d="M23 21v-2a4 4 0 0 0-3-3.87"></path><path d="M16 3.13a4 4 0 0 1 0 7.75"></path></svg>Contacts</a></li>
+              <li class="nav-sub-item"><a href="{{ route('file-manager') }}" class="nav-sub-link"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-file-text"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></svg>File Manager</a></li>
+              <li class="nav-sub-item"><a href="{{ route('mail-manager') }}" class="nav-sub-link"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-mail"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg>Mail</a></li>
+              <li class="nav-sub-item"><a href="{{ route('mail-manager') }}" class="nav-sub-link"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-mail"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg>Mail</a></li>
             </ul>
           </li>
           <li class="nav-item with-sub">
@@ -87,7 +88,7 @@
             </a>
             <a href="" class="dropdown-item">
               <div class="media">
-                <div class="avatar avatar-sm avatar-online"><img src="../../assets/img/img8.jpg" class="rounded-circle" alt=""></div>
+                <div class="avatar avatar-sm avatar-online"><img src="img/img30.jpg" class="rounded-circle" alt=""></div>
                 <div class="media-body mg-l-15">
                   <strong>Joyce Chua</strong>
                   <p>on the other hand we denounce...</p>
@@ -97,7 +98,7 @@
             </a>
             <a href="" class="dropdown-item">
               <div class="media">
-                <div class="avatar avatar-sm avatar-online"><img src="../../assets/img/img7.jpg" class="rounded-circle" alt=""></div>
+                <div class="avatar avatar-sm avatar-online"><img src="img/img30.jpg" class="rounded-circle" alt=""></div>
                 <div class="media-body mg-l-15">
                   <strong>Althea Cabardo</strong>
                   <p>is there anyone who loves...</p>
@@ -107,7 +108,7 @@
             </a>
             <a href="" class="dropdown-item">
               <div class="media">
-                <div class="avatar avatar-sm avatar-online"><img src="../../assets/img/img9.jpg" class="rounded-circle" alt=""></div>
+                <div class="avatar avatar-sm avatar-online"><img src="img/img30.jpg" class="rounded-circle" alt=""></div>
                 <div class="media-body mg-l-15">
                   <strong>Adrian Monino</strong>
                   <p>duis aute irure dolor in repre...</p>
@@ -128,7 +129,7 @@
             <div class="dropdown-header">Notifications</div>
             <a href="" class="dropdown-item">
               <div class="media">
-                <div class="avatar avatar-sm avatar-online"><img src="../../assets/img/img6.jpg" class="rounded-circle" alt=""></div>
+                <div class="avatar avatar-sm avatar-online"><img src="img/img30.jpg" class="rounded-circle" alt=""></div>
                 <div class="media-body mg-l-15">
                   <p>Congratulate <strong>Socrates Itumay</strong> for work anniversaries</p>
                   <span>Mar 15 12:32pm</span>
@@ -137,7 +138,7 @@
             </a>
             <a href="" class="dropdown-item">
               <div class="media">
-                <div class="avatar avatar-sm avatar-online"><img src="../../assets/img/img8.jpg" class="rounded-circle" alt=""></div>
+                <div class="avatar avatar-sm avatar-online"><img src="img/img30.jpg" class="rounded-circle" alt=""></div>
                 <div class="media-body mg-l-15">
                   <p><strong>Joyce Chua</strong> just created a new blog post</p>
                   <span>Mar 13 04:16am</span>
@@ -146,7 +147,7 @@
             </a>
             <a href="" class="dropdown-item">
               <div class="media">
-                <div class="avatar avatar-sm avatar-online"><img src="../../assets/img/img30.jpg" class="rounded-circle" alt=""></div>
+                <div class="avatar avatar-sm avatar-online"><img src="img/img30.jpg" class="rounded-circle" alt=""></div>
                 <div class="media-body mg-l-15">
                   <p><strong>Althea Cabardo</strong> just created a new blog post</p>
                   <span>Mar 13 02:56am</span>
@@ -213,3 +214,6 @@
         </div><!-- navbar-search-body -->
       </div><!-- navbar-search -->
     </header>
+    <div class="maincontent" >
+
+   

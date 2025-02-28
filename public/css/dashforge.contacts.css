@@ -408,3 +408,28 @@
   margin-top: -2px;
   width: 18px;
   margin-right: 12px; }
+
+
+
+  .contact-list {
+    overflow-y: auto;
+    max-height: 100vh; /* Full viewport height */
+    
+    /* Customize Scrollbar */
+    scrollbar-width: thin; /* For Firefox */
+    scrollbar-color: #ccc transparent; /* For Firefox */
+}
+
+/* For WebKit Browsers (Chrome, Edge, Safari) */
+.contact-list::-webkit-scrollbar {
+    width: 0px; /* Adjust scrollbar width */
+}
+
+.contact-list::-webkit-scrollbar-thumb {
+    background-color: #aaa; /* Scrollbar color */
+    border-radius: 0px; /* Round edges */
+}
+
+.contact-list::-webkit-scrollbar-track {
+    background: transparent; /* Transparent track */
+}

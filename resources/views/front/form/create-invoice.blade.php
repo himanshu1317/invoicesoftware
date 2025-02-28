@@ -16,6 +16,59 @@
         padding: 0 0.5rem;
     }
 </style>
+
+<!-- Include SweetAlert2 -->
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+<!-- Show Validation Errors -->
+@if ($errors->any())
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            Swal.fire({
+                title: "Validation Error!",
+                html: `<ul style='text-align: left;'>
+                    @foreach ($errors->all() as $error)
+                        <li>{{ $error }}</li>
+                    @endforeach
+                </ul>`,
+                icon: "error",
+                confirmButtonText: "OK"
+            });
+        });
+    </script>
+@endif
+
+<!-- Show Flash Messages -->
+@if (session('success'))
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            Swal.fire({
+                title: "Success!",
+                text: "{{ session('success') }}",
+                icon: "success",
+                confirmButtonText: "OK"
+            });
+        });
+    </script>
+@endif
+
+@if (session('error'))
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            Swal.fire({
+                title: "Error!",
+                text: "{{ session('error') }}",
+                icon: "error",
+                confirmButtonText: "OK"
+            });
+        });
+    </script>
+@endif
+
+
+
+
+
 <div class="container mt-3">
     <div class="d-sm-flex align-items-center justify-content-between mg-b-20 mg-lg-b-25 mg-xl-b-30">
         <div>
@@ -69,6 +122,19 @@
     </div>
 </div>
 
+@if (session('success'))
+    <div class="alert alert-success alert-dismissible fade show" role="alert">
+        {{ session('success') }}
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
+@endif
+
+@if (session('error'))
+    <div class="alert alert-danger alert-dismissible fade show" role="alert">
+        {{ session('error') }}
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
+@endif
 
 <form id="customerForm" action="{{ route('invstore', ['customer_id' => old('customer_id')]) }}" method="POST">
     @csrf
@@ -132,8 +198,8 @@
                             <!-- Email -->
                             <label class="col-form-label col-lg-2 col-12 required" for="email">Due Date</label>
                             <div class="col-lg-4 col-12">
-                                <input type="date" name="Due" id="Due" class="form-control" placeholder="Enter Email" value="{{ old('email') }}">
-                                @error('email')
+                                <input type="date" name="due_date" id="Due" class="form-control" placeholder="Enter Email" value="{{ old('email') }}">
+                                @error('due_date')
                                 <div class="text-danger mt-1">{{ $message }}</div>
                                 @enderror
                             </div>
@@ -144,10 +210,10 @@
                     <div class="form-group">
                         <div class="row ms-3">
                             <!-- Contact Number -->
-                            <label class="col-form-label col-lg-2 col-12 required" for="customer_id">Email</label>
+                            <label class="col-form-label col-lg-2 col-12 required" for="email">Email</label>
                             <div class="col-lg-4 col-12">
                                 <input type="email" name="email" id="customerEmail" class="form-control" placeholder="Enter Email" value="{{ old('email') }}">
-                                @error('customer_id')
+                                @error('email')
                                 <div class="text-danger">{{ $message }}</div>
                                 @enderror
                             </div>
@@ -155,13 +221,14 @@
                             <!-- School/Company Name -->
                             <label class="col-form-label col-lg-2 col-12 required" for="email">School/Company Name</label>
                             <div class="col-lg-4 col-12">
-                                <input type="text" name="company_school_name" id="company_school_name" class="form-control" placeholder="Enter School/Company Name" value="{{ old('email') }}">
+                                <input type="text" name="organization" id="company_school_name" class="form-control" placeholder="Enter School/Company Name" value="{{ old('organization') }}">
 
-                                @error('email')
+                                @error('organization')
                                 <div class="text-danger mt-1">{{ $message }}</div>
                                 @enderror
                             </div>
                         </div>
+                        <!-- <input type="text" name="customer_id" id=""  value="{{ old('id')  }}" > -->
                     </div>
 
                     <!-- Address Field -->
@@ -171,7 +238,7 @@
                             <label class="col-form-label col-lg-2 col-12 required" for="customer_id">Contact Number</label>
                             <div class="col-lg-4 col-12">
                                 <input type="text" name="phone" id="phone" class="form-control">
-                                @error('customer_id')
+                                @error('phone')
                                 <div class="text-danger">{{ $message }}</div>
                                 @enderror
                             </div>
@@ -207,33 +274,49 @@
                 </tr>
             </thead>
             <tbody>
-                <tr>
-                    <td><input name="product_name[]" type="text" class="form-control" placeholder="Enter name"></td>
-                    <td><input name="quantity[]" type="number" class="form-control product-qty" placeholder="Enter quantity" min="0"></td>
-                    <td><input name="unit_price[]" type="number" class="form-control product-rate" placeholder="Enter rate" min="0"></td>
-                   
-                    <td>
-                        <div class="input-group">
-                            <input type="number" name="discount[]" class="form-control row-discount w-75" placeholder="Discount" min="0">
-                            <select class="form-select row-discount-type w-25">
-                                <option value="percentage">%</option>
-                                <option value="rupees">₹</option>
-                            </select>
-                        </div>
-                    </td>
-                    <td><input name="total[]" type="number" class="form-control product-amount" readonly></td>
-                    <!-- <td>
-                        <div class="input-group">
-                            <input type="number" name="tax[]" class="form-control row-tax w-75" placeholder="Tax" min="0">
-                            <select class="form-select row-tax-type w-25">
-                                <option value="gst">GST</option>
-                                <option value="vat">VAT</option>
-                            </select>
-                        </div>
-                    </td> -->
-                    <td><button type="button" class="btn btn-danger btn-sm delete-row">Remove</button></td>
-                </tr>
-            </tbody>
+    <tr>
+        <td>
+            <input name="product_name[]" type="text" class="form-control" placeholder="Enter name">
+            @error('product_name.0')
+                <div class="text-danger mt-1">{{ $message }}</div>
+            @enderror
+        </td>
+        <td>
+            <input name="quantity[]" type="number" class="form-control product-qty" placeholder="Enter quantity" min="0">
+            @error('quantity.0')
+                <div class="text-danger mt-1">{{ $message }}</div>
+            @enderror
+        </td>
+        <td>
+            <input name="unit_price[]" type="number" class="form-control product-rate" placeholder="Enter rate" min="0">
+            @error('unit_price.0')
+                <div class="text-danger mt-1">{{ $message }}</div>
+            @enderror
+        </td>
+        <td>
+            <div class="input-group">
+                <input type="number" name="itemdiscount[]" class="form-control row-discount w-75" placeholder="Discount" min="0">
+                <select name="itemdiscounttype[]" class="form-select row-discount-type w-25">
+                    <option value="percentage">%</option>
+                    <option value="rupees">₹</option>
+                </select>
+            </div>
+            @error('itemdiscount.0')
+                <div class="text-danger mt-1">{{ $message }}</div>
+            @enderror
+        </td>
+        <td>
+            <input name="amount[]" type="number" class="form-control product-amount" readonly>
+            @error('amount.0')
+                <div class="text-danger mt-1">{{ $message }}</div>
+            @enderror
+        </td>
+        <td>
+            <button type="button" class="btn btn-danger btn-sm delete-row">Remove</button>
+        </td>
+    </tr>
+</tbody>
+
         </table>
         <button type="button" class="btn btn-primary w-25" id="addRowButton">Add New Item</button>
         <label class="fw-bold" style="display: none;">Subtotal: ₹<span id="subtotal">0.00</span></label>
@@ -256,53 +339,67 @@
 
     <div class="row my-3 align-items-center">
         <div class="col-lg-3">
-            <label for="paymentStatus" class="form-label">Payment Status</label>
-            <select class="form-select" id="paymentStatus">
+            <label for="status" class="form-label">Payment Status</label>
+            <select class="form-select" name="status" id="paymentStatus">
                 <option value="">-- Select Status --</option>
                 <option value="paid">Paid</option>
                 <option value="unpaid">Unpaid</option>
                 <option value="partial">Partially Paid</option>
             </select>
+            @error('status')
+                <div class="text-danger mt-1">{{ $message }}</div>
+            @enderror
         </div>
 
         <div class="col-lg-3 d-none" id="paymentMethodContainer">
             <label for="paymentMethod" class="form-label">Payment Method</label>
-            <select class="form-select" id="paymentMethod">
-                <option value="">-- Select Method --</option>
+            <select class="form-select" name="payment_method" id="paymentMethod">
+                <option  value="">-- Select Method --</option>
                 <option value="cash">Cash</option>
                 <option value="bank_transfer">Bank Transfer</option>
                 <option value="credit_card">Credit Card</option>
                 <option value="paypal">PayPal</option>
                 <option value="upi">UPI</option>
             </select>
+            @error('payment_method')
+                <div class="text-danger mt-1">{{ $message }}</div>
+            @enderror
         </div>
 
         <div class="col-lg-3 d-none" id="paymentReferenceContainer">
             <label for="paymentReference" class="form-label">Payment Reference</label>
-            <input type="text" id="paymentReference" class="form-control" placeholder="Enter reference (if paid)">
+            <input type="text" id="paymentReference" name="transaction_id" class="form-control" placeholder="Enter reference (if paid)">
         </div>
+
     </div>
 
     <!-- Fields that will always show (discount, paid amount, total amount, etc.) -->
     <div class="row my-3 align-items-center">
-        <div class="col-lg-3">
+        <!-- <div class="col-lg-3">
             <label for="totalAmount" class="form-label">Total Amount</label>
-            <input type="number" id="totalAmount" class="form-control" placeholder="Enter total amount">
-        </div>
+            <input hidden  type="number"  id="totalAmount" class="form-control" placeholder="Enter total amount">
+        </div> -->
 
         <div class="col-lg-3">
-            <label for="discount" class="form-label">Discount</label>
-            <input type="number" id="discount" class="form-control" placeholder="Enter discount amount">
-        </div>
+    <label for="total_discount" class="form-label">Total Discount</label>
+    <div class="input-group">
+        <input type="number" id="total_discount" name="total_discount[]" class="form-control w-75" placeholder="Enter discount" min="0">
+        <select id="total_discount" name="total_discount" class="form-select ">
+            <option value="percentage">%</option>
+            <option value="rupees">₹</option>
+        </select>
+    </div>
+</div>
+
 
         <div class="col-lg-3">
             <label for="paidBalance" class="form-label">Paid Amount</label>
-            <input type="number" id="paidBalance" class="form-control" placeholder="Enter paid amount">
+            <input type="number" name="paid" id="paidBalance" class="form-control" placeholder="Enter paid amount">
         </div>
 
         <div class="col-lg-3">
             <label for="dueBalance" class="form-label">Due Balance</label>
-            <input type="text" id="dueBalance" class="form-control" readonly>
+            <input type="text" name="balance" id="dueBalance" class="form-control" readonly>
         </div>
     </div>
 
@@ -310,53 +407,136 @@
     
 </fieldset>
 
-<script>
-    document.getElementById('paymentStatus').addEventListener('change', function () {
-        let paymentMethodContainer = document.getElementById('paymentMethodContainer');
-        let paymentReferenceContainer = document.getElementById('paymentReferenceContainer');
-        let partialPaymentFields = document.getElementById('partialPaymentFields');
+<script>$(document).ready(function () {
+    // Payment Status Change Handler
+    $('#paymentStatus').change(function () {
+        let paymentMethodContainer = $('#paymentMethodContainer');
+        let paymentReferenceContainer = $('#paymentReferenceContainer');
 
-        // Show payment method and reference containers if paid or partial
-        if (this.value === 'paid' || this.value === 'partial') {
-            paymentMethodContainer.classList.remove('d-none');
-            paymentReferenceContainer.classList.remove('d-none');
+        if ($(this).val() === 'paid' || $(this).val() === 'partial') {
+            paymentMethodContainer.removeClass('d-none');
+            paymentReferenceContainer.removeClass('d-none');
         } else {
-            paymentMethodContainer.classList.add('d-none');
-            paymentReferenceContainer.classList.add('d-none');
-        }
-
-        // Show partial payment fields only if status is partial
-        if (this.value === 'partial') {
-            partialPaymentFields.classList.remove('d-none');
-        } else {
-            partialPaymentFields.classList.add('d-none');
+            paymentMethodContainer.addClass('d-none');
+            paymentReferenceContainer.addClass('d-none');
         }
     });
 
-    document.getElementById('paymentMethod').addEventListener('change', function () {
-        let paymentReferenceContainer = document.getElementById('paymentReferenceContainer');
-
-        if (this.value === 'cash') {
-            paymentReferenceContainer.classList.add('d-none');
-        } else {
-            paymentReferenceContainer.classList.remove('d-none');
-        }
+    // Payment Method Change Handler
+    $('#paymentMethod').change(function () {
+        $('#paymentReferenceContainer').toggleClass('d-none', $(this).val() === 'cash');
     });
 
-    function calculateDueBalance() {
-        let totalAmount = parseFloat(document.getElementById('totalAmount').value) || 0;
-        let discount = parseFloat(document.getElementById('discount').value) || 0;
-        let paidAmount = parseFloat(document.getElementById('paidBalance').value) || 0;
-        
-        let discountedTotal = totalAmount - discount; // Apply the discount to the total amount
-        let dueAmount = discountedTotal - paidAmount;
+    // Calculate Row Amount
+    function calculateRowAmount(row) {
+        const qty = parseFloat($(row).find('.product-qty').val()) || 0;
+        const rate = parseFloat($(row).find('.product-rate').val()) || 0;
+        const discount = parseFloat($(row).find('.row-discount').val()) || 0;
+        const discountType = $(row).find('.row-discount-type').val();
+        const amountField = $(row).find('.product-amount');
 
-        document.getElementById('dueBalance').value = dueAmount.toFixed(2);
+        if (qty < 0 || rate < 0 || discount < 0) {
+            Swal.fire({ icon: 'warning', title: 'Invalid Input', text: 'Values must be positive.' });
+            $(row).find('.product-qty').val(Math.max(0, qty));
+            $(row).find('.product-rate').val(Math.max(0, rate));
+            $(row).find('.row-discount').val(Math.max(0, discount));
+            return;
+        }
+
+        let rowTotal = qty * rate;
+        if (discountType === 'percentage') {
+            rowTotal -= (rowTotal * discount) / 100;
+        } else if (discountType === 'rupees') {
+            rowTotal -= discount;
+        }
+
+        amountField.val(rowTotal.toFixed(2));
+        calculateSubtotal();
     }
 
-    // Event listeners for discount and paid balance fields to recalculate due balance
-    document.getElementById('discount').addEventListener('input', calculateDueBalance);
-    document.getElementById('paidBalance').addEventListener('input', calculateDueBalance);
+    // Calculate Subtotal with Overall Discount
+    function calculateSubtotal() {
+        let subtotal = 0;
+        $('.product-amount').each(function () {
+            subtotal += parseFloat($(this).val()) || 0;
+        });
+
+        let discount = parseFloat($('#discount').val()) || 0; // First discount
+        let overallDiscount = parseFloat($('#total_discount').val()) || 0; // New overall discount
+        let overallDiscountType = $('#total_discount').val(); // Type: percentage or rupees
+
+        let discountedTotal = subtotal;
+
+        // Apply the first discount
+        discountedTotal -= discount;
+
+        // Apply the second overall discount
+        if (overallDiscountType === 'percentage') {
+            discountedTotal -= (discountedTotal * overallDiscount) / 100;
+        } else if (overallDiscountType === 'rupees') {
+            discountedTotal -= overallDiscount;
+        }
+
+        $('#subtotal').text(subtotal.toFixed(2)); // Display original subtotal
+        $('#totalAmount').text(discountedTotal.toFixed(2)); // Display final total after all discounts
+        $('#totalAmountInput').val(discountedTotal.toFixed(2)); // Hidden input for calculations
+
+        calculateDueBalance(); // Update due balance
+    }
+
+    // Calculate Due Balance
+    function calculateDueBalance() {
+        let totalAmount = parseFloat($('#totalAmountInput').val()) || 0;
+        let paidAmount = parseFloat($('#paidBalance').val()) || 0;
+
+        let dueAmount = totalAmount - paidAmount;
+
+        $('#dueBalance').val(dueAmount.toFixed(2));
+    }
+
+    // Event Listeners for Input Changes
+    $(document).on('input', '.product-qty, .product-rate, .row-discount', function () {
+        calculateRowAmount($(this).closest('tr'));
+    });
+
+    $(document).on('change', '.row-discount-type', function () {
+        calculateRowAmount($(this).closest('tr'));
+    });
+
+    // Add New Row
+    $('#addRowButton').click(function () {
+        const newRow = `
+            <tr>
+                <td><input name="product_name[]" type="text" class="form-control" placeholder="Enter name"></td>
+                <td><input name="quantity[]" type="number" class="form-control product-qty" placeholder="Enter quantity" min="0"></td>
+                <td><input name="unit_price[]" type="number" class="form-control product-rate" placeholder="Enter rate" min="0"></td>
+                <td>
+                    <div class="input-group">
+                        <input type="number" name="itemdiscount[]" class="form-control row-discount w-75" placeholder="Discount" min="0">
+                        <select name="itemdiscounttype[]" class="form-select row-discount-type w-25">
+                            <option value="percentage">%</option>
+                            <option value="rupees">₹</option>
+                        </select>
+                    </div>
+                </td>
+                <td><input name="amount[]" type="number" class="form-control product-amount" readonly></td>
+                <td><button type="button" class="btn btn-danger btn-sm delete-row">Remove</button></td>
+            </tr>`;
+        $('#dynamicTable tbody').append(newRow);
+    });
+
+    // Delete Row
+    $(document).on('click', '.delete-row', function () {
+        $(this).closest('tr').remove();
+        calculateSubtotal();
+    });
+
+    // Trigger recalculations when overall discount or paid balance changes
+    $('#discount, #total_discount, #paidBalance, #total_discount').on('input change', function () {
+        calculateSubtotal();
+    });
+});
+
 </script>
 
 
@@ -367,7 +547,7 @@
             <div class="row my-3">
                 <div class="col-lg-6">
                     <label for="customerNotes" class="form-label">Customer Notes</label>
-                    <textarea name="customerNotes" id="customerNotes" class="form-control" placeholder="Enter any special instructions"></textarea>
+                    <textarea name="customer_note" id="customerNotes" class="form-control" placeholder="Enter any special instructions"></textarea>
                 </div>
 
                 <div class="col-lg-6">

@@ -1,4 +1,6 @@
 <?php
+
+
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
@@ -8,29 +10,28 @@ class Invoice extends Model
 {
     use HasFactory;
 
-    // Specify the table if it differs from the plural form
-    // protected $table = 'invoices';
+    protected $fillable = [
+        'customer_id',
+        'invoice_number',
+        'invoice_date',
+        'due_date',
+        'total_amount',
+        'paid_amount',
+        'due_amount',
+        'status',
+        'payment_method',
+        'transaction_id',
+        'customer_note',
+        'termsConditions',
+    ];
 
-    // Define which attributes are mass assignable
-    protected $fillable = ['customer_id', 'invoice_number', 'invoice_date', 'due_date', 'status', 'total','discount','customer_note'];
-
-    // Relationship with the Customer model (One invoice belongs to one customer)
+    // Define relationship with Customer (assuming you have a Customer model)
     public function customer()
     {
         return $this->belongsTo(Customer::class);
     }
-
-    // Relationship with the InvoiceItem model (One invoice can have many invoice items)
-    public function invoiceItems()
+    public function items()
     {
-        return $this->hasMany(InvoiceItem::class);
-    }
-
-
-
-
-    public function calculateTotalAmount()
-    {
-        return $this->invoiceItems->sum('total');
+        return $this->hasMany(InvoiceItem::class, 'invoice_id');
     }
 }

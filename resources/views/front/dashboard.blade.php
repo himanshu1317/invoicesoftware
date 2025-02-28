@@ -5,7 +5,7 @@
 
 
  
-<div class="content-body" id="content">
+<div class="content-body pb-5" id="content">
         <div class=" pd-x-0">
           <div class="d-sm-flex align-items-center justify-content-between mg-b-20 mg-lg-b-25 mg-xl-b-30">
             <div>
@@ -517,7 +517,7 @@
           </div><!-- row -->
         </div><!-- container -->
       </div>
-    </div>
+    
 
    
 

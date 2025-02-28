@@ -4,13 +4,13 @@
  * This style is use in file manager page.
  *
  */
-@media (max-width: 767.98px) {
+/* @media (max-width: 767.98px) {
   .app-filemgr.filemgr-sidebar-show .filemgr-sidebar {
     left: 0;
     opacity: 1;
     visibility: visible; }
   .app-filemgr.filemgr-sidebar-show .filemgr-content {
-    transform: translateX(240px); } }
+    transform: translateX(240px); } } */
 
 .filemgr-wrapper {
   position: fixed;
@@ -81,7 +81,7 @@
   right: 0;
   bottom: 0; }
 
-.filemgr-content {
+/* .filemgr-content {
   position: absolute;
   top: 0;
   left: 0;
@@ -93,7 +93,7 @@
       transition: none; } }
   @media (min-width: 992px) {
     .filemgr-content {
-      left: 240px; } }
+      left: 240px; } } */
 
 .filemgr-content-header {
   position: absolute;
@@ -132,14 +132,14 @@
       .filemgr-content-header .nav-link svg.feather-settings {
         width: 18px;
         height: 18px; }
-
+/* 
 .filemgr-content-body {
   background-color: #f8f9fc;
   position: absolute;
   top: 55px;
   left: 0;
   right: 0;
-  bottom: 0; }
+  bottom: 0; } */
 
 .dropdown-file {
   position: absolute;

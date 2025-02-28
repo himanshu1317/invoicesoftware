@@ -1,10 +1,10 @@
 
-<footer class="bg-dark text-light text-center py-3 mt-auto">
-        <p class="mb-0">&copy; {{ date('Y') }} Your Company. All Rights Reserved.</p>
+<footer class="bg-dark text-light text-center py-1 mt-auto">
+        <small class="mb-0">&copy; {{ date('Y') }}  <a href="#"> Digivity tech.</a>  All Rights Reserved.</small>
     </footer>
+    </div>
 
-</div>
-<script src="{{asset('lib/jquery/jquery.min.js')}}"></script>
+<!-- <script src="{{asset('lib/jquery/jquery.min.js')}}"></script> -->
     <script src="{{asset('lib/bootstrap/js/bootstrap.bundle.min.js')}}"></script>
     <script src="{{asset('lib/feather-icons/feather.min.js')}}"></script>
     <script src="{{asset('lib/ionicons/ionicons/ionicons.esm.js')}}" type="module"></script>

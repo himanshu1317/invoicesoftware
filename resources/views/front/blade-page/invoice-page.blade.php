@@ -2,6 +2,200 @@
 
 @section('content')
 
+<style>
+
+.invoice-footer {
+    /* background: #222; */
+    /* color: #fff; */
+    text-align: center;
+    padding: 30px 20px;
+    font-size: 14px;
+    border-top: 4px solid #ff5733;
+}
+
+.footer-container {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+    gap: 20px;
+}
+
+.footer-logo img {
+    max-width: 120px;
+    border-radius: 10px;
+}
+
+.footer-info h3 {
+    font-size: 18px;
+    margin-bottom: 5px;
+    font-weight: bold;
+    color: #ffbd69;
+}
+
+.footer-info p {
+    margin: 5px 0;
+    font-size: 14px;
+}
+
+.footer-info a {
+    color: #33d9b2;
+    text-decoration: none;
+    font-weight: bold;
+    transition: 0.3s;
+}
+
+.footer-info a:hover {
+    color: #ffbd69;
+    text-decoration: underline;
+}
+
+.footer-bottom {
+    margin-top: 20px;
+}
+
+.footer-line {
+    width: 100%;
+    margin: 10px auto;
+    border: none;
+    height: 3px;
+    /* border-bottom: 3px solid #ff5733; */
+    background: #ff5733;
+}
+
+.copyright {
+    font-size: 12px;
+    color: #bbb;
+    margin-top: 10px;
+}
+
+
+.invoice-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 15px 20px;
+    border-bottom: 3px solid #ff5733;
+}
+
+.logo img {
+    max-width: 120px; /* Adjust logo size */
+    height: auto;
+}
+
+.company-details {
+    flex-grow: 1; /* Allow text to take up space */
+    text-align: center;
+}
+
+.company-name {
+    font-size: 1.8rem;
+    font-weight: bold;
+    text-transform: uppercase;
+}
+
+.address {
+    font-size: 1rem;
+    color: #666;
+}
+
+
+.custom-hr-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 20px 0;
+    gap: 10px;
+}
+
+
+.arrow-left, .arrow-right {
+    font-size: 24px;
+    color: #ff5733;
+    font-weight: bold;
+}
+
+
+
+
+.terms-container ul {
+    list-style: disc;
+    padding-left: 20px;
+}
+
+.terms-container ul li {
+    margin-bottom: 8px;
+    line-height: 1.5;
+}
+
+.agreement {
+    font-weight: bold;
+    color: #d9534f;
+    text-align: center;
+}
+
+
+
+:root {
+  --background-color: black;
+  --text-color: hsl(0, 100.00%, 50.40%);
+}
+
+
+.wrapper {
+  display: grid;
+  place-content: center;
+  /* background-color: var(--background-color); */
+  /* min-height: 100vh; */
+  font-family: "Oswald", sans-serif;
+  font-size: clamp(1.5rem, 1rem + 18vw, 2rem);
+  font-weight: 700;
+  text-transform: uppercase;
+  color: var(--text-color);
+}
+
+.wrapper > div {
+  grid-area: 1/1/-1/-1;
+}
+.top {
+  clip-path: polygon(0% 0%, 100% 0%, 100% 48%, 0% 58%);
+}
+.bottom {
+  clip-path: polygon(0% 60%, 100% 50%, 100% 100%, 0% 100%);
+  color: transparent;
+  background: -webkit-linear-gradient(177deg, black 53%, var(--text-color) 65%);
+  background: linear-gradient(177deg, black 53%, var(--text-color) 75%);
+  background-clip: text;
+  -webkit-background-clip: text;
+  transform: translateX(-0.02em);
+}
+
+
+    .invoice-header {
+        text-align: center;
+        /* padding: 25px; */
+        /* background-color: #007bff; */
+        /* color: white; */
+        border-radius: 8px;
+        margin-bottom: 20px;
+    }
+
+    .invoice-header h1 {
+        margin: 0;
+        font-size: 28px;
+        letter-spacing: 1px;
+    }
+
+    .invoice-header p {
+        margin: 5px 0;
+        font-size: 14px;
+    }
+
+    .contact {
+        font-weight: bold;
+        font-size: 16px;
+    }
+</style>
 
 
 
@@ -57,9 +251,9 @@
 
                 <div class="container ">
                     <div class="d-sm-flex align-items-center justify-content-between py-2">
-                       <select name="" class="form-control w-50" id="">
-                        <option value="">All Invoices</option>
-                       </select>
+                        <select name="" class="form-control w-50" id="">
+                            <option value="">All Invoices</option>
+                        </select>
                         <div class="mg-t-20 mg-sm-t-0">
                             <button class="btn btn-white"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-printer mg-r-5">
                                     <polyline points="6 9 6 2 18 2 18 9"></polyline>
@@ -75,40 +269,78 @@
 
 
                     <div class="table-responsive overflow-initial customviews-table  ">
-                        <table id="vertically-scrolled-table" class="table zi-table table-hover       header-fixed"><!---->
-                            <tbody>
-                                <tr tabindex="-1" id="2243871000000035179" class="ember-view table-active ">
-                                    <td class="   bulk-selection-cell cursor-pointer text-end" style="width: 38px;min-width: 38px;max-width: 38px;"><input aria-label="Select this row" id="ember233" class="ember-checkbox ember-view cursor-pointer align-middle" type="checkbox" aria-checked="false"></td>
-                                    <td class="ps-1 pe-3">
-                                        <div class="list-primary"><span class="float-end amount">₹330.00</span>
-                                            <div id="f749ee56-9ca0-4a27-998a-bf4b3a686dc0" class="name">Mr. suraj kumar</div> <!---->
-                                        </div>
-                                        <div class="list-secondary">
-                                            <div class="d-flex flex-wrap align-items-center"><a id="ember234" class="ember-view active text-regular" href="#/invoices/2243871000000035179"><span class="text-dark-shade-blue">INV-000004</span> <!----> <!----></a> <span class="dot-seperator mx-3 mt-1"></span> <span class="text-dark-shade-blue me-3">18/02/2025</span> <!----><!----></div>
-                                            <div class="mt-2"><!----> <span class="stat text-open">Due in 15 days</span> 
-                                           
-                                                    </div>
-                                        </div>
-                                    </td>
-                                </tr>
-                                <tr tabindex="-1" id="2243871000000035153" class="ember-view  ">
-                                    <td class="   bulk-selection-cell cursor-pointer text-end" style="width: 38px;min-width: 38px;max-width: 38px;"><input aria-label="Select this row" id="ember239" class="ember-checkbox ember-view cursor-pointer align-middle" type="checkbox"></td>
-                                    <td class="ps-1 pe-3">
-                                        <div class="list-primary"><span class="float-end amount">₹4,430.00</span>
-                                            <div id="dd5ff752-ba86-42d9-8f90-0ab2ac29450c" class="name">test</div> <!---->
-                                        </div>
-                                        <div class="list-secondary">
-                                            <div class="d-flex flex-wrap align-items-center"><a id="ember240" class="ember-view text-regular" href="#/invoices/2243871000000035153"><span class="text-dark-shade-blue">INV-000003</span> <!----> <!----></a> <span class="dot-seperator mx-3 mt-1"></span> <span class="text-dark-shade-blue me-3">16/02/2025</span> <!----><!----></div>
-                                            <div class="mt-2"><!----> <span class="stat text-overdue">Overdue by 2 days</span> 
-                                           
-                                                    </div>
-                                        </div>
-                                    </td>
-                                </tr>
-                              
-                               
-                            </tbody>
-                        </table> <!---->
+                    <table class="table table-hover align-middle shadow-sm border rounded">
+    <thead class="table-dark">
+        <tr>
+            <th class="text-center" style="width: 50px;">
+                <input type="checkbox" class="form-check-input">
+            </th>
+            <th>Customer Name</th>
+            <th>Invoice Number</th>
+            <th>Invoice Date</th>
+            <th>Due Date</th>
+            <th class="text-end">Amount</th>
+            <th class="text-center">Status</th>
+        </tr>
+    </thead>
+    <tbody>
+        @if ($invoices->count() > 0)
+            @foreach ($invoices as $invoice)
+                <tr>
+                    <!-- Checkbox -->
+                    <td class="text-center">
+                        <input type="checkbox" class="form-check-input">
+                    </td>
+
+                    <!-- Customer Name -->
+                    <td>
+                        <strong class="text-dark">
+                            {{ $invoice->customer->name ?? 'N/A' }} {{ $invoice->customer->lastname ?? '' }}
+                        </strong>
+                    </td>
+
+                    <!-- Invoice Number -->
+                    <td>
+                        <a href="#/invoices/{{ $invoice->id }}" class="btn btn-sm btn-outline-primary">
+                            #{{ $invoice->invoice_number }}
+                        </a>
+                    </td>
+
+                    <!-- Invoice Date -->
+                    <td>
+                        <span class="text-muted">
+                            {{ \Carbon\Carbon::parse($invoice->invoice_date)->format('d M, Y') }}
+                        </span>
+                    </td>
+
+                    <!-- Due Date -->
+                    <td>
+                        <span class="text-muted">
+                            {{ \Carbon\Carbon::parse($invoice->due_date)->format('d M, Y') }}
+                        </span>
+                    </td>
+
+                    <!-- Amount -->
+                    <td class="text-end">
+                        <span class="badge bg-success p-2">₹{{ number_format($invoice->paid_amount, 2) }}</span>
+                    </td>
+
+                    <!-- Status -->
+                    <td class="text-center">
+                        <span class="badge {{ now()->gt(\Carbon\Carbon::parse($invoice->due_date)) ? 'bg-danger' : 'bg-warning' }}">
+                            {{ now()->gt(\Carbon\Carbon::parse($invoice->due_date)) ? 'Overdue' : 'Due in ' . now()->diffInDays(\Carbon\Carbon::parse($invoice->due_date)) . ' days' }}
+                        </span>
+                    </td>
+                </tr>
+            @endforeach
+        @else
+            <tr>
+                <td colspan="7" class="text-center text-muted py-4">No invoices found.</td>
+            </tr>
+        @endif
+    </tbody>
+</table>
+
                     </div>
                 </div>
 
@@ -129,54 +361,63 @@
             }
         </script>
 
-        <div class="col-sm-8 ">
+        <div class="col-sm-8  ">
             <div class="row shadow  m-1">
-                <div class="col-sm-12" id="printableContent">
-                    <div class="row pt-4">
-                        <div class="col-sm-3 ">
-                            <img src="{{ asset('images/digivity-logo.png') }}" class="w-100" alt="">
-                        </div>
-                    </div>
+                <div class="  col-sm-12" id="printableContent">
+                <div class="container">
+    <div class="invoice-header d-flex align-items-center justify-content-between">
+        <!-- Company Logo -->
+        <div class="logo">
+            <img src="{{ asset('images/inv-logo.png') }}" alt="Company Logo">
+        </div>
+        
+        <!-- Company Name & Address -->
+        <div class="company-details text-center">
+            <h1 class="company-name">Digivity Technology Pvt. Ltd.</h1>
+            <p class="address">Plot No. 2, Knowledge Park III, Greater Noida, Uttar Pradesh 201306</p>
+        </div>
+    </div>
+</div>
+
                     <div class="row">
 
-                        <div class="container pd-x-0 pd-lg-x-10 pd-xl-x-0 p-5">
+                        <div class="container pd-x-0 pd-lg-x-10 pd-xl-x-0 px-5">
                             <div class="row">
                                 <div class="col-sm-6">
                                     <label class="tx-sans tx-uppercase tx-10 tx-medium tx-spacing-1 tx-color-03">Billed From</label>
-                                    <h6 class="tx-15 mg-b-10">ThemePixels, Inc.</h6>
-                                    <p class="mg-b-0">201 Something St., Something Town, YT 242, Country 6546</p>
-                                    <p class="mg-b-0">Tel No: 324 445-4544</p>
-                                    <p class="mg-b-0">Email: youremail@companyname.com</p>
+                                    <h6 class="tx-15 mg-b-10">Digivity Technology Pvt. Ltd.</h6>
+                                    <p class="mg-b-0">Plot No. 2, Knowledge Park III, Greater Noida, Uttar Pradesh 201306</p>
+                                    <p class="mg-b-0">+91 8299898209</p>
+                                    <p class="mg-b-0">digivity.in@gmail.com</p>
                                 </div><!-- col -->
                                 <div class="col-sm-6 tx-right d-none d-md-block">
                                     <label class="tx-sans tx-uppercase tx-10 tx-medium tx-spacing-1 tx-color-03">Invoice Number</label>
-                                    <h1 class="tx-normal tx-color-04 mg-b-10 tx-spacing--2">#DF032AZ00022</h1>
+                                    <h1 class="tx-normal tx-color-04 mg-b-10 tx-spacing--2">#{{ $invoice->invoice_number }}</h1>
                                 </div><!-- col -->
                                 <div class="col-sm-6 col-lg-8 mg-t-40 mg-sm-t-0 mg-md-t-40">
                                     <label class="tx-sans tx-uppercase tx-10 tx-medium tx-spacing-1 tx-color-03">Billed To</label>
-                                    <h6 class="tx-15 mg-b-10">{{ $customer->email }}</h6>
-                                    <p class="mg-b-0">4033 Patterson Road, Staten Island, NY 10301</p>
-                                    <p class="mg-b-0">Tel No: 324 445-4544</p>
-                                    <p class="mg-b-0">Email: youremail@companyname.com</p>
+                                    <p class="mg-b-0">{{ $invoice->customer->address ?? '' }}</p>
+                                    <p class="mg-b-0">{{ $invoice->customer->phone ?? '' }}</p>
+                                    <p class="mg-b-0">{{ $invoice->customer->email ?? '' }}</p>
                                 </div><!-- col -->
                                 <div class="col-sm-6 col-lg-4 mg-t-40">
                                     <label class="tx-sans tx-uppercase tx-10 tx-medium tx-spacing-1 tx-color-03">Invoice Information</label>
                                     <ul class="list-unstyled lh-7">
-                                        <li class="d-flex justify-content-between">
+                                        <!-- <li class="d-flex justify-content-between">
                                             <span>Invoice Number</span>
                                             <span>DF032AZ00022</span>
                                         </li>
                                         <li class="d-flex justify-content-between">
                                             <span>Product ID</span>
                                             <span>32334300</span>
-                                        </li>
+                                        </li> -->
                                         <li class="d-flex justify-content-between">
                                             <span>Issue Date</span>
-                                            <span>January 20, 2023</span>
+                                            <span>{{ $invoice->invoice_date }}</span>
                                         </li>
                                         <li class="d-flex justify-content-between">
                                             <span>Due Date</span>
-                                            <span>April 21, 2023</span>
+                                            <span>{{ $invoice->due_date }}</span>
                                         </li>
                                     </ul>
                                 </div><!-- col -->
@@ -184,44 +425,28 @@
 
                             <div class="table-responsive mg-t-40">
                                 <table class="table table-invoice bd-b">
-                                    <thead>
-                                        <tr>
-                                            <th class="wd-20p">Type</th>
+                                    <thead class="text-center">
+                                        <tr class="bg-dark text-light">
+                                            <th class="wd-20p">Product Name</th>
 
                                             <th class="tx-center">QNTY</th>
-                                            <th class="tx-right">Unit Price</th>
-                                            <th class="tx-right">Amount</th>
+                                            <th class="tx-center">Unit Price</th>
+                                            <th class="tx-center">Amount</th>
                                         </tr>
                                     </thead>
-                                    <tbody>
-                                        <tr>
-                                            <td class="tx-nowrap">Website Design</td>
+                                    <tbody class="text-center">
 
-                                            <td class="tx-center">2</td>
-                                            <td class="tx-right">$150.00</td>
-                                            <td class="tx-right">$300.00</td>
-                                        </tr>
-                                        <tr>
-                                            <td class="tx-nowrap">Firefox Plugin</td>
 
-                                            <td class="tx-center">1</td>
-                                            <td class="tx-right">$1,200.00</td>
-                                            <td class="tx-right">$1,200.00</td>
-                                        </tr>
-                                        <tr>
-                                            <td class="tx-nowrap">iPhone App</td>
+                                    @foreach ($invoice->items as $item)
+    <tr>
+        <td>{{ $item->product_name }}</td>
+        <td>{{ $item->quantity }}</td>
+        <td>₹{{ number_format($item->unit_price, 2) }}</td>
+    </tr>
+@endforeach
 
-                                            <td class="tx-center">2</td>
-                                            <td class="tx-right">$850.00</td>
-                                            <td class="tx-right">$1,700.00</td>
-                                        </tr>
-                                        <tr>
-                                            <td class="tx-nowrap">Android App</td>
 
-                                            <td class="tx-center">3</td>
-                                            <td class="tx-right">$850.00</td>
-                                            <td class="tx-right">$2,550.00</td>
-                                        </tr>
+
                                     </tbody>
                                 </table>
                             </div>
@@ -229,30 +454,120 @@
                             <div class="row justify-content-between">
                                 <div class="col-sm-6 col-lg-6 order-2 order-sm-0 mg-t-40 mg-sm-t-0">
                                     <label class="tx-sans tx-uppercase tx-10 tx-medium tx-spacing-1 tx-color-03">Notes</label>
-                                    <p>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. </p>
+                                    <p>
+                                        {{ $invoice->customer_note }}
+                                    </p>
+
+
                                 </div><!-- col -->
                                 <div class="col-sm-6 col-lg-4 order-1 order-sm-0">
                                     <ul class="list-unstyled lh-7 pd-r-10">
                                         <li class="d-flex justify-content-between">
                                             <span>Sub-Total</span>
-                                            <span>$5,750.00</span>
+                                            <span>₹{{ number_format($item->quantity + $item->unit_price, 2) }}</span>
                                         </li>
-                                        <li class="d-flex justify-content-between">
+                                        <!-- <li class="d-flex justify-content-between">
                                             <span>Tax (5%)</span>
-                                            <span>$287.50</span>
-                                        </li>
+                                            <span>00.00</span>
+                                        </li> -->
                                         <li class="d-flex justify-content-between">
                                             <span>Discount</span>
-                                            <span>-$50.00</span>
+                                            <span>{{ $item->itemdiscount }} 
+                                            {{ $item->itemdiscounttype == 'percentage' ? '%' : '₹' }}
+
+                                        
+                                        
+                                        </span>
                                         </li>
                                         <li class="d-flex justify-content-between">
-                                            <strong>Total Due</strong>
-                                            <strong>$5,987.50</strong>
+                                            <strong>Total </strong>
+                                            <strong>{{ $item->itemdiscount }} </strong>
+                                        </li>
+                                        <li class="d-flex justify-content-between">
+                                            <strong>Paid </strong>
+                                            <strong>{{ $invoice->paid_amount }}</strong>
+                                        </li>
+                                        <li class="d-flex justify-content-between">
+                                            <strong>Balance</strong>
+                                            <strong>{{ $invoice->due_amount }}</strong>
                                         </li>
                                     </ul>
                                 </div>
+                                <div class="container pd-x-0 pd-lg-x-10 pd-xl-x-0 ">
+                    <div class="d-sm-flex align-items-center justify-content-between">
+                   <div class="terms-container">
+                   
 
-                                <div class="w-100 d-flex justify-content-end">
+
+    <h5 >Terms & Conditions :-</h5>
+    <p>Welcome to <strong>Digivity Technology Pvt. Ltd.</strong>! Please read these terms and conditions carefully before proceeding.</p>
+    
+    <ul>
+        <li><strong>Payment Terms:</strong> All invoices must be paid within 15 days of issuance. Late payments may incur additional charges.</li>
+        <li><strong>Product/Service Warranty:</strong> Our products/services come with a standard 6-month warranty. Any misuse or unauthorized modifications void the warranty.</li>
+        <!-- <li><strong>Refund Policy:</strong> Refunds are only applicable within 7 days of purchase, provided the product/service is unused.</li>
+        <li><strong>Liability:</strong> We are not responsible for any direct or indirect damages caused due to improper usage.</li>
+        <li><strong>Changes to Terms:</strong> We reserve the right to update these terms at any time without prior notice.</li> -->
+    </ul>
+
+    <p>For any queries, please contact us at <a href="mailto:digivity.in@gmail.com">digivity.in@gmail.com</a>.</p>
+
+    <p class="agreement">By proceeding, you agree to abide by these terms and conditions.</p>
+</div> 
+
+
+                    </div>
+                </div>
+                               
+    <div class="footer-bottom text-center">
+        <hr class="footer-line">
+        <p class="copyright">© 2025 Digivity Technology Pvt. Ltd. | All Rights Reserved</p>
+    </div>
+
+
+
+
+                                <div class="container pd-x-0 pd-lg-x-10 pd-xl-x-0 ">
+                    <div class="d-sm-flex align-items-center justify-content-between">
+                    <!-- <div class="terms-container">
+                   
+
+
+    <h2>Terms & Conditions</h2>
+    <p>Welcome to <strong>Digivity Technology Pvt. Ltd.</strong>! Please read these terms and conditions carefully before proceeding.</p>
+    
+    <ul>
+        <li><strong>Payment Terms:</strong> All invoices must be paid within 15 days of issuance. Late payments may incur additional charges.</li>
+        <li><strong>Product/Service Warranty:</strong> Our products/services come with a standard 6-month warranty. Any misuse or unauthorized modifications void the warranty.</li>
+        <li><strong>Refund Policy:</strong> Refunds are only applicable within 7 days of purchase, provided the product/service is unused.</li>
+        <li><strong>Liability:</strong> We are not responsible for any direct or indirect damages caused due to improper usage.</li>
+        <li><strong>Changes to Terms:</strong> We reserve the right to update these terms at any time without prior notice.</li>
+    </ul>
+
+    <p>For any queries, please contact us at <a href="mailto:digivity.in@gmail.com">digivity.in@gmail.com</a>.</p>
+
+    <p class="agreement">By proceeding, you agree to abide by these terms and conditions.</p>
+</div> -->
+
+
+                    </div>
+                </div>
+
+                              
+
+                            </div><!-- row -->
+                        </div><!-- container -->
+                    </div>
+                </div>
+               
+            </div>
+        </div>
+
+
+    </div>
+
+
+    <div class="w-100 d-flex justify-content-end py-4">
                                     <button onclick="printContainer()" class="btn btn-white"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-printer mg-r-5">
                                             <polyline points="6 9 6 2 18 2 18 9"></polyline>
                                             <path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"></path>
@@ -267,22 +582,6 @@
                                             <line x1="1" y1="10" x2="23" y2="10"></line>
                                         </svg> Pay</button>
                                 </div><!-- col -->
-
-                            </div><!-- row -->
-                        </div><!-- container -->
-                    </div>
-                </div>
-                <div class="container pd-x-0 pd-lg-x-10 pd-xl-x-0">
-                    <div class="d-sm-flex align-items-center justify-content-between">
-
-
-                    </div>
-                </div>
-            </div>
-        </div>
-
-
-    </div>
 </div>
 
 <!-- Print Styles -->
