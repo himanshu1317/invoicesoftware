@@ -339,8 +339,8 @@
 
     <div class="row my-3 align-items-center">
         <div class="col-lg-3">
-            <label for="status" class="form-label">Payment Status</label>
-            <select class="form-select" name="status" id="paymentStatus">
+            <label for="status"  class="form-label">Payment Status</label>
+            <select class="form-select"  name="status" id="paymentStatus">
                 <option value="">-- Select Status --</option>
                 <option value="paid">Paid</option>
                 <option value="unpaid">Unpaid</option>
@@ -353,7 +353,7 @@
 
         <div class="col-lg-3 d-none" id="paymentMethodContainer">
             <label for="paymentMethod" class="form-label">Payment Method</label>
-            <select class="form-select" name="payment_method" id="paymentMethod">
+            <select class="form-select"  name="payment_method" id="paymentMethod">
                 <option  value="">-- Select Method --</option>
                 <option value="cash">Cash</option>
                 <option value="bank_transfer">Bank Transfer</option>
@@ -369,6 +369,9 @@
         <div class="col-lg-3 d-none" id="paymentReferenceContainer">
             <label for="paymentReference" class="form-label">Payment Reference</label>
             <input type="text" id="paymentReference" name="transaction_id" class="form-control" placeholder="Enter reference (if paid)">
+            @error('transaction_id')
+                <div class="text-danger mt-1">{{ $message }}</div>
+            @enderror
         </div>
 
     </div>
@@ -380,11 +383,11 @@
             <input hidden  type="number"  id="totalAmount" class="form-control" placeholder="Enter total amount">
         </div> -->
 
-        <div class="col-lg-3">
+<div class="col-lg-3">
     <label for="total_discount" class="form-label">Total Discount</label>
     <div class="input-group">
-        <input type="number" id="total_discount" name="total_discount[]" class="form-control w-75" placeholder="Enter discount" min="0">
-        <select id="total_discount" name="total_discount" class="form-select ">
+        <input type="number" id="total_discount" name="total_discount" class="form-control w-75" placeholder="Enter discount" min="0">
+        <select id="total_discounttype" name="total_discounttype" class="form-select ">
             <option value="percentage">%</option>
             <option value="rupees">₹</option>
         </select>
@@ -414,6 +417,7 @@
         let paymentReferenceContainer = $('#paymentReferenceContainer');
 
         if ($(this).val() === 'paid' || $(this).val() === 'partial') {
+            $('#paymentMethod').attr('required', true);
             paymentMethodContainer.removeClass('d-none');
             paymentReferenceContainer.removeClass('d-none');
         } else {
@@ -424,7 +428,9 @@
 
     // Payment Method Change Handler
     $('#paymentMethod').change(function () {
-        $('#paymentReferenceContainer').toggleClass('d-none', $(this).val() === 'cash');
+        let isCash = $(this).val() === 'cash';
+        $('#paymentReferenceContainer').toggleClass('d-none', isCash);
+        $('#paymentReference').attr('required', !isCash);
     });
 
     // Calculate Row Amount
@@ -456,6 +462,7 @@
 
     // Calculate Subtotal with Overall Discount
     function calculateSubtotal() {
+       
         let subtotal = 0;
         $('.product-amount').each(function () {
             subtotal += parseFloat($(this).val()) || 0;
@@ -463,8 +470,8 @@
 
         let discount = parseFloat($('#discount').val()) || 0; // First discount
         let overallDiscount = parseFloat($('#total_discount').val()) || 0; // New overall discount
-        let overallDiscountType = $('#total_discount').val(); // Type: percentage or rupees
-
+        let overallDiscountType = $('#total_discounttype').val(); // Type: percentage or rupees
+        
         let discountedTotal = subtotal;
 
         // Apply the first discount
@@ -512,7 +519,7 @@
                 <td><input name="unit_price[]" type="number" class="form-control product-rate" placeholder="Enter rate" min="0"></td>
                 <td>
                     <div class="input-group">
-                        <input type="number" name="itemdiscount[]" class="form-control row-discount w-75" placeholder="Discount" min="0">
+                        <input type="number"  name="itemdiscount[]" class="form-control row-discount w-75" placeholder="Discount" min="0">
                         <select name="itemdiscounttype[]" class="form-select row-discount-type w-25">
                             <option value="percentage">%</option>
                             <option value="rupees">₹</option>
